@@ -60,10 +60,40 @@ public class ExampleUnitTest {
     }
 
     //checking >8 characters
-    //testing "password" lower case
+    //test now fails because of new criteria
     @Test
     public void pwLongEnough() throws Exception {
-        assertEquals(true, Validator.validatePW("longenough"));
+        assertEquals(false, Validator.validatePW("longenough"));
+    }
+
+    //checking all upper case
+    @Test
+    public void allUpper() throws Exception {
+        assertEquals(false, Validator.validatePW("UPPERCASE"));
+    }
+
+    //checking all lower case
+    @Test
+    public void allLower() throws Exception {
+        assertEquals(false, Validator.validatePW("lowercase"));
+    }
+
+    //checking with no special character
+    @Test
+    public void noSpecial() throws Exception {
+        assertEquals(false, Validator.validatePW("workingPW"));
+    }
+
+    //checking with no number
+    @Test
+    public void noNum() throws Exception {
+        assertEquals(false, Validator.validatePW("workingPW$"));
+    }
+
+    //running example test that will pass (changing inputs)
+    @Test
+    public void shouldWork() throws Exception {
+        assertEquals(true, Validator.validatePW("workingPW$2"));
     }
 }
 
